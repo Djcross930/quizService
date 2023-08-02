@@ -1,8 +1,8 @@
 package com.dan.quizservice.controller;
 
-import com.dan.quizer.model.QuestionWrapper;
-import com.dan.quizer.model.Response;
-import com.dan.quizer.service.QuizService;
+import com.dan.quizservice.model.QuestionWrapper;
+import com.dan.quizservice.model.Response;
+import com.dan.quizservice.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

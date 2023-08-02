@@ -1,11 +1,10 @@
 package com.dan.quizservice.service;
 
-import com.dan.quizer.dao.QuestionDao;
-import com.dan.quizer.dao.QuizDao;
-import com.dan.quizer.model.Question;
-import com.dan.quizer.model.QuestionWrapper;
-import com.dan.quizer.model.Quiz;
-import com.dan.quizer.model.Response;
+import com.dan.quizservice.dao.QuizDao;
+import com.dan.quizservice.model.Question;
+import com.dan.quizservice.model.QuestionWrapper;
+import com.dan.quizservice.model.Quiz;
+import com.dan.quizservice.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +18,14 @@ import java.util.Optional;
 public class QuizService {
     @Autowired
     QuizDao quizDao;
-    @Autowired
-    QuestionDao questionDao;
+//    @Autowired
+//    QuestionDao questionDao;
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
-        List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
-        Quiz quiz = new Quiz();
-        quiz.setTitle(title);
-        quiz.setQuestions(questions);
-        quizDao.save(quiz);
+//        List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
+//        Quiz quiz = new Quiz();
+//        quiz.setTitle(title);
+//        quiz.setQuestions(questions);
+//        quizDao.save(quiz);
         return new ResponseEntity<>("Success", HttpStatus.CREATED);
     }
 
