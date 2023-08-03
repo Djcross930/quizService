@@ -1,6 +1,7 @@
 package com.dan.quizservice.controller;
 
 import com.dan.quizservice.model.QuestionWrapper;
+import com.dan.quizservice.model.QuizDto;
 import com.dan.quizservice.model.Response;
 import com.dan.quizservice.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class QuizController {
     @Autowired
     QuizService quizService;
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
-        return quizService.createQuiz(category, numQ, title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
+        return quizService.createQuiz(quizDto.getCategoryName(), quizDto.getNumQuestions(), quizDto.getTitle());
     }
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id){

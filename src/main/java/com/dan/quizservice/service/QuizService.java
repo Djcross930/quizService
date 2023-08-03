@@ -1,7 +1,6 @@
 package com.dan.quizservice.service;
 
 import com.dan.quizservice.dao.QuizDao;
-import com.dan.quizservice.model.Question;
 import com.dan.quizservice.model.QuestionWrapper;
 import com.dan.quizservice.model.Quiz;
 import com.dan.quizservice.model.Response;
@@ -21,38 +20,38 @@ public class QuizService {
 //    @Autowired
 //    QuestionDao questionDao;
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
-//        List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
+//        List<Integer> questions =
 //        Quiz quiz = new Quiz();
 //        quiz.setTitle(title);
 //        quiz.setQuestions(questions);
 //        quizDao.save(quiz);
-        return new ResponseEntity<>("Success", HttpStatus.CREATED);
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
-        Optional<Quiz> quiz = quizDao.findById(id);
-        List<Question> questionsFromDb = quiz.get().getQuestions();
+//        Optional<Quiz> quiz = quizDao.findById(id);
+//        List<Question> questionsFromDb = quiz.get().getQuestions();
         List<QuestionWrapper> questionsForUser = new ArrayList<>();
-        for (Question q : questionsFromDb)
-        {
-            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionTitle(), q.getOption1(), q.getOption2(), q.getOption3(), q.getOption4());
-            questionsForUser.add(qw);
-        }
+//        for (Question q : questionsFromDb)
+//        {
+//            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionTitle(), q.getOption1(), q.getOption2(), q.getOption3(), q.getOption4());
+//            questionsForUser.add(qw);
+//        }
         return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
     }
 
     public ResponseEntity<Integer> calculateResponse(Integer id, List<Response> responses) {
         Quiz quiz = quizDao.findById(id).get();
-        List<Question> questions = quiz.getQuestions();
+//        List<Question> questions = quiz.getQuestions();
         int right = 0;
-        int i = 0;
-        for (Response response : responses)
-        {
-            if (response.getResponse().equals(questions.get(i).getRightAnswer()))
-                right++;
-
-            i++;
-        }
+//        int i = 0;
+//        for (Response response : responses)
+//        {
+//            if (response.getResponse().equals(questions.get(i).getRightAnswer()))
+//                right++;
+//
+//            i++;
+//        }
         return new ResponseEntity<>(right, HttpStatus.OK);
     }
 }
