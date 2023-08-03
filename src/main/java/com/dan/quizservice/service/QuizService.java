@@ -1,6 +1,7 @@
 package com.dan.quizservice.service;
 
 import com.dan.quizservice.dao.QuizDao;
+import com.dan.quizservice.feign.QuizInterface;
 import com.dan.quizservice.model.QuestionWrapper;
 import com.dan.quizservice.model.Quiz;
 import com.dan.quizservice.model.Response;
@@ -17,15 +18,15 @@ import java.util.Optional;
 public class QuizService {
     @Autowired
     QuizDao quizDao;
-//    @Autowired
-//    QuestionDao questionDao;
+    @Autowired
+    QuizInterface quizInterface;
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
-//        List<Integer> questions =
-//        Quiz quiz = new Quiz();
-//        quiz.setTitle(title);
-//        quiz.setQuestions(questions);
-//        quizDao.save(quiz);
-            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        List<Integer> questions = quizInterface.getQuestionsFromQuiz(category, numQ).getBody();
+        Quiz quiz = new Quiz();
+        quiz.setTitle(title);
+        quiz.setQuestionIds(questions);
+        quizDao.save(quiz);
+        return new ResponseEntity<>("Success", HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
